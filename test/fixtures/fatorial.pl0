@@ -1,0 +1,17 @@
+VAR x, squ;
+
+PROCEDURE fatorial;
+BEGIN
+  IF x > 2 THEN x = fatorial(x - 1)
+  fat := x * x
+END;
+
+BEGIN
+   IN x;
+   WHILE x <= 10 DO
+   BEGIN
+      CALL square;
+      OUT squ;
+      x := x + 1;
+   END
+END.

@@ -1,0 +1,2 @@
+#!/bin/sh
+java -cp jruby.jar org.jruby.Main compile.rb $*

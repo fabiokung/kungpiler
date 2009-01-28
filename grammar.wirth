@@ -1,0 +1,53 @@
+## LINGUAGEM PL/0 LEVEMENTE MODIFICADA DEFINIDA NA NOTACAO DE WIRTH ##
+## MODIFICACOES:                                                    ##
+##   - entrada e saida (statements IN e OUT)                        ##
+
+program = block "." .
+
+block = [ "CONST" ident "=" number {"," ident "=" number} ";"]
+        [ "VAR" ident {"," ident} ";"]
+        { "PROCEDURE" ident ";" block ";" } statement .
+
+statement = [ ident ":=" expression | 
+            "CALL" ident |
+            "OUT" expression |
+            "IN" ident |
+            "BEGIN" statement {";" statement } "END" |
+            "IF" condition "THEN" statement |
+            "WHILE" condition "DO" statement ] .
+
+condition = expression ("="|"#"|"<"|"<="|">"|">=") expression .
+
+expression = [ "+"|"-"] term { ("+"|"-") term} .
+
+term = factor {("*"|"/") factor} .
+
+factor = ident | number | "(" expression ")" .
+
+## TOKENS IDENTIFICADOS                                               ##
+##                        ---------                                   ##
+##       CONST VAR PROCEDURE CALL BEGIN END IF THEN WHILE DO          ##
+##         = # < <= > >= , ; ( ) := + - * / ident number .            ##
+##                        ---------                                   ##
+##                                                                    ##
+## AGLUTINANDO MAIS AS EXPRESSOES (REDUZINDO O NUMERO DE SUBMAQUINAS) ##
+
+program = block "." .
+
+block = [ "CONST" ident "=" number {"," ident "=" number} ";"]
+        [ "VAR" ident {"," ident} ";"]
+        { "PROCEDURE" ident ";" block ";" } statement .
+
+statement = [ ident ":=" expression | 
+            "CALL" ident |
+            "OUT" expression |
+            "IN" ident |
+            "BEGIN" statement {";" statement } "END" |
+            "IF" expression ("="|"#"|"<"|"<="|">"|">=") expression "THEN" statement |
+            "WHILE" expression ("="|"#"|"<"|"<="|">"|">=") expression "DO" statement ].
+
+expression = ["+"|"-"] 
+             ( (ident | number | "(" expression ")") 
+               { ("*"|"/") (ident | number | "(" expression ")") } ) 
+             { ("+"|"-") ( (ident | number | "(" expression ")") 
+                           { ("*"|"/") (ident | number | "(" expression ")") } ) } .
