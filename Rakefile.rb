@@ -7,9 +7,13 @@ require "rake"
 require "spec/rake/spectask"
 # require "redgreen"
 
+task :default => :spec
+task :test => :spec
+
 desc "Run all tests under test/"
-Spec::Rake::SpecTask.new('test') do |t|
+Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['test/**/*_spec.rb']
+  t.spec_opts = ["--colour", "--format", "specdoc"]
 end
 # task :test do |t|
 #   require 'test/unit'
