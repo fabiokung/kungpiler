@@ -53,7 +53,7 @@ Running with Ruby interpreter installed
 - to run the compiler, use the compile.rb script:
 
   ruby compile.rb <source> <output>
-      
+
 - if you want to run the rspec tests in the `test/` folder, just run `rake test`;
 - spare some time reading the tests :-)
 
