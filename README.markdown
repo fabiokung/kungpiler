@@ -39,7 +39,7 @@ Running with the minimum requirements
 - to see the compiler usage instructions, run the `compile.bat` file inside some shell (cmd inside Windows, or sh inside unixes);
 - still in the terminal window, to compile your PL/0 source:
 
-        compile &lt;source&gt; &lt;output&gt;
+        compile <source> <output>
         compile program.pl0 compiled
 
 - in this case, the compiler generates two files: compiled.j (Jasmin Mnemonics) and compiled.class (executable Java bytecode, assembled by Jasmin);
@@ -52,7 +52,7 @@ Running with Ruby interpreter installed
 
 - to run the compiler, use the compile.rb script:
 
-        ruby compile.rb &lt;source&gt; &lt;output&gt;
+        ruby compile.rb <source> <output>;
 
 - if you want to run the rspec tests in the `test/` folder, just run `rake test`;
 - spare some time reading the tests :-)
@@ -62,4 +62,4 @@ Troubleshooting
 
 If you have some problem running the compiler, here is the full command line to be used:
 
-    java -cp jruby.jar org.jruby.Main compile.rb &lt;source&gt; &lt;output&gt;
+    java -cp jruby.jar org.jruby.Main compile.rb <source> <output>
