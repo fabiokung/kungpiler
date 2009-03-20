@@ -3,7 +3,7 @@ PL/0 Compiler, written in Ruby
 
 This is a simple *one-step* compiler, which generates valid **Java Bytecode**, written in Ruby.
 
-More details can be found in the relatorio.pdf (pt-BR) document, but here is a summary:
+More details can be found in the `relatorio-compilador.pdf` (pt-BR) document, but here is a summary:
 
 - [RSpec](http://rspec.info) Specifications (Example Groups in `test` folder) are a good place to learn how the compiler should work.
 - Sample PL/0 programs can be found in the `test/fixtures` directory.
