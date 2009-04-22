@@ -67,12 +67,11 @@ describe "StateMachine" do
   
   it "should exit a final state if there is more input" do
     tokens = [ token('+'), token('identifier'), token(','), token('*'), token('identifier'), token(',') ]
-    @lexer.should_receive(:next_token).and_return(*tokens)
-    @lexer.should_receive(:lookahead).twice.and_return('identifier', nil)
+    @lexer.should_receive(:next_token).any_number_of_times.and_return(*tokens)
+    @lexer.should_receive(:lookahead).at_most(:twice).and_return('identifier', nil)
     @counter.should_receive(:s0_t2_called).once
-    @counter.should_receive(:s0_t3_called).twice
-    @counter.should_receive(:s2_t1_called).twice
-    @counter.should_receive(:s3_t1_called).once
+    @counter.should_receive(:s0_t3_called).once
+    @counter.should_receive(:s2_t1_called).once
     
     @machine.start
     @machine.actual_state.should eql(:s3)
